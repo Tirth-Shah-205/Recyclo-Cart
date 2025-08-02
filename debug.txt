@@ -1,0 +1,25 @@
+Array
+(
+    [items] => Array
+        (
+            [0] => Array
+                (
+                    [name] => Aluminium Foil Paper
+                    [quantity] => 2
+                    [price] => 150
+                    [total] => 300
+                )
+
+            [1] => Array
+                (
+                    [name] => E-Waste Lamps
+                    [quantity] => 1
+                    [price] => 200
+                    [total] => 200
+                )
+
+        )
+
+    [amount] => 500
+    [paymentMethod] => Card
+)

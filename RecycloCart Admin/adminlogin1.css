@@ -1,0 +1,122 @@
+* {
+  margin: 0px;
+  padding: 0px;;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  background-color: rgba(46, 134, 99,0.429);
+  background: linear-gradient(to bottom, rgb(6, 108, 100),  rgba(20, 97, 55,0.485)); /* You can simplify this if you want a solid color */
+  width: 800px;
+  height: 400px;
+  margin: 10% auto;;
+  border-radius: 5px;
+}
+
+.content-holder {
+  text-align: center;
+  color: white;
+  font-size: 14px;
+  font-weight: lighter;
+  letter-spacing: 2px;
+  margin-top: 15%; /* Adjust as needed for logo placement */
+  padding: 50px;
+  display: flex; /* Added for vertical centering of logo and text */
+  flex-direction: column; /* Arrange logo and text vertically */
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+}
+
+.content-holder h2 {
+  font-size: 34px;
+  margin: 20px auto;
+}
+
+.recyclo-logo {
+    width: 100px; /* Adjust as needed */
+    height: auto;
+    margin-bottom: 15px; /* Space between logo and text */
+    border-radius: 8px; /* Slightly rounded corners for the logo */
+}
+
+
+.box-2 {
+  background-color: white;
+  margin: 5px;
+  border-radius: 5px; /* Match container border-radius */
+}
+
+.login-form-container,
+.forgot-password-form-container {
+  text-align: center;
+  margin-top: 10%; /* Adjust as needed */
+  /* Ensures forms are positioned similarly */
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%; /* Take full width of box-2 */
+  max-width: 350px; /* Limit width for better appearance */
+}
+
+.login-form-container h1,
+.forgot-password-form-container h1 {
+  color: black;
+  font-size: 24px;
+  padding: 20px;
+}
+
+.input-field {
+  box-sizing: border-box;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 7px;
+  border: 1px solid rgb(168, 168, 168);
+  width: 250px;
+  outline: none;
+  margin-bottom: 15px; /* Space between input fields */
+}
+
+.login-button,
+.forgot-password-submit-button {
+  box-sizing: border-box;
+  color: white;
+  font-size: 14px;
+  padding: 13px;
+  border-radius: 7px;
+  border: none;
+  width: 250px;
+  outline: none;
+  background-color: rgb(44, 126, 115);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover,
+.forgot-password-submit-button:hover {
+    background-color: rgb(35, 100, 90);
+}
+
+.forgot-password-link,
+.back-to-login-link {
+    color: rgb(44, 126, 115); /* Link color */
+    font-size: 13px;
+    margin-top: 15px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.forgot-password-link:hover,
+.back-to-login-link:hover {
+    color: rgb(35, 100, 90);
+}
+
+/* Initially hide the forgot password form */
+.forgot-password-form-container {
+    display: none;
+}

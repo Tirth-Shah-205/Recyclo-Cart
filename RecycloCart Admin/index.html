@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="styles1.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="logo-container">
+                <img src="icons/logo.jpg" alt="Logo" class="icon-img">
+                 <P class="icon-text">Recyclo Cart</P>
+            </div>
+            <ul>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#waste-management">Waste Management</a></li>
+                <li><a href="#inventory">Inventory</a></li>
+                <li><a href="#orders">Orders</a></li>
+                <li><a href="#pickup-orders">Pickup Orders</a></li>
+                <li><a href="#users">Users</a></li>
+            </ul>
+        </aside>
+        <main class="main-content">
+            <header class="header">
+                <h1>Welcome, Admin!</h1>
+                <div class="user-profile">
+                    <span>Admin Name</span>
+                    <button class="logout-btn">Logout</button>
+                </div>
+            </header>
+
+            <section id="overview" class="dashboard-section active">
+                <h2>Overview</h2>
+                <div class="cards-grid">
+                    <div class="card">
+                        <h3>Total Waste Recycled</h3>
+                        <p id="totalWasteRecycled">15,230 kg</p>
+                    </div>
+                    <div class="card">
+                        <h3>Remaining Stocks</h3>
+                        <p id="remainingStocks">750 units</p>
+                    </div>
+                    <div class="card">
+                        <h3>Remaining Orders</h3>
+                        <p id="remainingOrders">45</p>
+                    </div>
+                    <div class="card">
+                        <h3>Completed Orders</h3>
+                        <p id="completedOrders">120</p>
+                    </div>
+                    <div class="card">
+                        <h3>Pending Pickups</h3>
+                        <p id="pendingPickupsCount">0</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="waste-management" class="dashboard-section">
+                <h2>Waste Management Details</h2>
+                <div class="detail-card">
+                    <h3>Recycling Breakdown</h3>
+                    <p>Plastic: 5000 kg</p>
+                    <p>Paper: 7000 kg</p>
+                    <p>Glass: 2000 kg</p>
+                    <p>Metal: 1230 kg</p>
+                    </div>
+            </section>
+
+            <section id="inventory" class="dashboard-section">
+                <h2>Inventory Details</h2>
+                 <div class="detail-card">
+                    <h3>Current Stock Levels</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Quantity</th>
+                                <th>Unit</th>
+                                <th>Actions</th> <!-- New header for actions -->
+                            </tr>
+                        </thead>
+                        <tbody id="inventoryTableBody">
+                            <!-- Inventory items will be loaded here by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="orders" class="dashboard-section">
+                <h2>Order Management</h2>
+                <div class="detail-card">
+                    <h3>Pending Orders</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Date</th>
+                                <th>Ordered Product</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pendingOrdersTableBody">
+                            <!-- Pending orders will be loaded here by JavaScript -->
+                        </tbody>
+                    </table>
+
+                    <h3 style="margin-top: 30px;">Recent Completed Orders</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Date</th>
+                                <th>Ordered Product</th>
+                            </tr>
+                        </thead>
+                        <tbody id="completedOrdersTableBody">
+                            <!-- Completed orders will be loaded here by JavaScript -->
+                        </tbody>
+                    </table>
+
+                    <h3 style="margin-top: 30px;">Rejected Orders</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Date</th>
+                                <th>Ordered Product</th>
+                            </tr>
+                        </thead>
+                        <tbody id="rejectedOrdersTableBody">
+                            <!-- Rejected orders will be loaded here by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="pickup-orders" class="dashboard-section">
+                <h2>Pickup Order Management</h2>
+                <div class="detail-card">
+                    <h3>Pending Pickup Orders</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Pickup ID</th>
+                                <th>Customer</th>
+                                <th>Date</th>
+                                <th>Waste Category</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pendingPickupOrdersTableBody">
+                            <!-- Pending pickup orders will be loaded here by JavaScript -->
+                        </tbody>
+                    </table>
+
+                    <h3 style="margin-top: 30px;">Completed Pickup Orders</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Pickup ID</th>
+                                <th>Customer</th>
+                                <th>Date</th>
+                                <th>Waste Category</th>
+                            </tr>
+                        </thead>
+                        <tbody id="completedPickupOrdersTableBody">
+                            <!-- Completed pickup orders will be loaded here by JavaScript -->
+                        </tbody>
+                    </table>
+
+                    <h3 style="margin-top: 30px;">Rejected Pickup Orders</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Pickup ID</th>
+                                <th>Customer</th>
+                                <th>Date</th>
+                                <th>Waste Category</th>
+                            </tr>
+                        </thead>
+                        <tbody id="rejectedPickupOrdersTableBody">
+                            <!-- Rejected pickup orders will be loaded here by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="users" class="dashboard-section">
+                <h2>User Information</h2>
+                <div class="detail-card">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Password</th>
+                                <th>Reward Points</th>
+                            </tr>
+                        </thead>
+                        <tbody id="userTableBody">
+                            <tr>
+                                <td>user123</td>
+                                <td>user123@example.com</td>
+                              <!---<td>user</td>
+                                <td>xyz</td>
+                                <td>x1y2z3</td>--->
+                                <td>1500</td>
+                            </tr>
+                            <tr>
+                                <td>ecoWarrior</td>
+                                <td>ecowarrior@example.com</td>
+                              <!--<td>user</td>
+                                <td>xyz</td>
+                                <td>x1y2z3</td>-->
+                                <td>2300</td>
+                            </tr>
+                            <tr>
+                                <td>greenThumb</td>
+                                <td>greenthumb@example.com</td>
+                                <!--<td>user</td>
+                                <td>xyz</td>
+                                <td>x1y2z3</td>-->
+                                <td>800</td>
+                            </tr>
+                            <tr>
+                                <td>recycleking</td>
+                                <td>recycleking@example.com</td>
+                               <!-- <td>user</td>
+                                <td>xyz</td>
+                                <td>x1y2z3</td>-->
+                                <td>3100</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="stockManageModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeManageStockModal()">&times;</span>
+            <h2>Manage Stock for <span id="modalItemName"></span></h2>
+            <p>Current Quantity: <span id="modalCurrentQuantity"></span> pieces</p>
+            <label for="orderQuantity">Quantity to Order:</label>
+            <input type="number" id="orderQuantity" min="1" value="1">
+            <button class="modal-order-button" onclick="orderStock()">Order</button>
+        </div>
+    </div>
+
+    <!-- Order Confirmation Modal -->
+    <div id="orderConfirmationModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeOrderConfirmationModal()">&times;</span>
+            <h2>Order Confirmed!</h2>
+            <p id="confirmationMessage"></p>
+            <button class="modal-ok-button" onclick="closeOrderConfirmationModal()">OK</button>
+        </div>
+    </div>
+
+    
+    <script src="script1.js"></script>
+</body>
+</html>

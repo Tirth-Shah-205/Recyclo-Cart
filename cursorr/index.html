@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RecycloCart Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <div class="sidebar">
+            <div class="logo">
+                <img src="photos/Recyclo Logo.jpg" alt="RecycloCart Logo">
+                <h2>RecycloCart</h2>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <li class="active"><a href="#"><i class="fas fa-home"></i> Dashboard</a></li>
+                    <li><a href="#"><i class="fas fa-calendar-alt"></i> My Pickups</a></li>
+                    <li><a href="#"><i class="fas fa-shopping-cart"></i> Shop</a></li>
+                    <li><a href="#"><i class="fas fa-coins"></i> Token Points</a></li>
+                    <li><a href="#"><i class="fas fa-history"></i> History</a></li>
+                    <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+                </ul>
+            </nav>
+            <div class="logout">
+                <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <div class="header">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search...">
+                </div>
+                <div class="user-profile">
+                    <div class="notifications">
+                        <i class="far fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </div>
+                    <div class="profile">
+                        <img src="photos/User.jpg" alt="User Profile" height="40px" width="4F0px">
+                        <span>John Doe</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-title">
+                <h1>Dashboard</h1>
+                <p>Welcome back, John! Here's your recycling overview.</p>
+            </div>
+
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-icon green">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="stat-details">
+                        <h3>Total Recycled</h3>
+                        <p class="stat-value">128 kg</p>
+                        <p class="stat-change positive"><i class="fas fa-arrow-up"></i> 12% from last month</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon blue">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <div class="stat-details">
+                        <h3>Token Points</h3>
+                        <p class="stat-value">450</p>
+                        <p class="stat-change positive"><i class="fas fa-arrow-up"></i> 5% from last month</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon orange">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="stat-details">
+                        <h3>Completed Pickups</h3>
+                        <p class="stat-value">8</p>
+                        <p class="stat-change neutral"><i class="fas fa-minus"></i> Same as last month</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon purple">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                    <div class="stat-details">
+                        <h3>Items Purchased</h3>
+                        <p class="stat-value">12</p>
+                        <p class="stat-change negative"><i class="fas fa-arrow-down"></i> 3% from last month</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-content">
+                <div class="upcoming-pickups">
+                    <div class="content-header">
+                        <h2>Upcoming Pickups</h2>
+                        <button class="btn-secondary">Schedule New</button>
+                    </div>
+                    <div class="pickup-list">
+                        <div class="pickup-item">
+                            <div class="pickup-date">
+                                <div class="month">OCT</div>
+                                <div class="day">15</div>
+                            </div>
+                            <div class="pickup-details">
+                                <h3>Paper & Cardboard Pickup</h3>
+                                <p><i class="fas fa-clock"></i> 10:00 AM - 12:00 PM</p>
+                                <p><i class="fas fa-map-marker-alt"></i> 123 Green Street, Eco City</p>
+                            </div>
+                            <div class="pickup-actions">
+                                <button class="btn-primary">Edit</button>
+                                <button class="btn-outline">Cancel</button>
+                            </div>
+                        </div>
+                        <div class="pickup-item">
+                            <div class="pickup-date">
+                                <div class="month">OCT</div>
+                                <div class="day">22</div>
+                            </div>
+                            <div class="pickup-details">
+                                <h3>Electronics & Batteries</h3>
+                                <p><i class="fas fa-clock"></i> 2:00 PM - 4:00 PM</p>
+                                <p><i class="fas fa-map-marker-alt"></i> 456 Recycle Avenue, Eco City</p>
+                            </div>
+                            <div class="pickup-actions">
+                                <button class="btn-primary">Edit</button>
+                                <button class="btn-outline">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="activity-shop">
+                    <div class="recycling-activity">
+                        <div class="content-header">
+                            <h2>Recycling Activity</h2>
+                            <span class="view-all">View All</span>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="recyclingChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="recommended-products">
+                        <div class="content-header">
+                            <h2>Recommended Products</h2>
+                            <span class="view-all">Visit Shop</span>
+                        </div>
+                        <div class="product-list">
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <img src="photos/Steel Bottle.jpg" alt="Steel Bottle" height="65" width="55">
+                                </div>
+                                <div class="product-info">
+                                    <h3>Steel Bottle</h3>
+                                    <p class="product-price">120 Points</p>
+                                    <button class="btn-primary btn-sm">Manage</button>
+                                </div>
+                            </div>
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <img src="https://images01.nicepage.com/e02ce416d1a2bafbf0ba42d1/49d3985b0db358d8bdfa2777/iron-decorative.webp" alt="Iron Decorative" height="65" width="55">
+                                </div>
+                                <div class="product-info">
+                                    <h3>Iron Decorative</h3>
+                                    <p class="product-price">85 Points</p>
+                                    <button class="btn-primary btn-sm">Manage</button>
+                                </div>
+                            </div>
+							<div class="product-card">
+                                <div class="product-image">
+                                    <img src="photos/Copper Water Dispenser.png" alt="Copper Water Dispenser" height="65" width="55">
+                                </div>
+                                <div class="product-info">
+                                    <h3>Copper Water Dispenser</h3>
+                                    <p class="product-price">85 Points</p>
+                                    <button class="btn-primary btn-sm">Manage</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 

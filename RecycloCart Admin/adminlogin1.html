@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="adminlogin1.css">
+    <title>adminlogin</title>
+    <style>
+        /* CSS for error messages */
+        .error-message {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none; /* Hidden by default */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box-1">
+            <div class="content-holder">
+                <img src="Icons/logo.jpg" alt="Recyclo Cart Logo" class="recyclo-logo">
+                <h2>Recyclo Cart</h2>
+            </div>
+        </div>
+        
+        <div class="box-2">
+            <div class="login-form-container">
+                <form  action="index.html" onsubmit="return validateLoginForm()">
+                    <h1>Login Form</h1>
+                    <input type="text" placeholder="Username" class="input-field" id="loginUsername" name="loginUsername">
+                    <span class="error-message" id="loginUsernameError"></span>
+                    <br><br>
+                    <input type="password" placeholder="Password" class="input-field" id="loginPassword" name="loginPassword">
+                    <span class="error-message" id="loginPasswordError"></span>
+                    <br><br>
+                    <input type="submit" class="login-button" value="Login">
+                    <p class="forgot-password-link" onclick="showForgotPasswordForm()">Forgot Password?</p>
+                </form>
+            </div>
+
+            <!-- Forgot Password Form Container -->
+            <div class="forgot-password-form-container">
+                <form onsubmit="return validateForgotPasswordForm()">
+                    <h1>Forgot Password</h1>
+                    <input type="email" placeholder="Email" class="input-field" id="forgotEmail" name="forgotEmail">
+                    <span class="error-message" id="forgotEmailError"></span>
+                    <br><br>
+                    <input type="password" placeholder="New Password" class="input-field" id="newPassword" name="newPassword">
+                    <span class="error-message" id="newPasswordError"></span>
+                    <br><br>
+                    <input type="password" placeholder="Confirm Password" class="input-field" id="confirmPassword" name="confirmPassword">
+                    <span class="error-message" id="confirmPasswordError"></span>
+                    <br><br>
+                    <button type="submit" class="forgot-password-submit-button">Reset Password</button>
+                    <p class="back-to-login-link" onclick="showLoginForm()">Back to Login</p>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="admin1.js"></script>
+</body>
+</html>
+

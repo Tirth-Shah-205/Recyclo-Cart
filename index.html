@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recyclo Cart - Sign Up & Sign In</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="container" class="container">
+    <!-- FORM SECTION -->
+    <div class="row">
+        <!-- SIGN UP -->
+        <div class="col align-items-center flex-col sign-up">
+            <div class="form-wrapper align-items-center">
+                <div class="form sign-up">
+                    <!-- Sign Up Form -->
+                    <form action="sign_up(connect).php" method="POST">
+                        <div class="input-group">
+                            <i class='bx bxs-user'></i>
+                            <input type="text" id="First_Name" name="First_Name" placeholder="First Name" required>
+                        </div>
+                        <div class="input-group">
+                            <i class='bx bxs-user'></i>
+                            <input type="text" id="Last_Name" name="Last_Name" placeholder="Last Name" required>
+                        </div>
+                        <div class="input-group">
+                            <i class='bx bxs-user'></i>
+                            <input type="Email" id="Email_id" name="Email_id" placeholder="Email-Id" required>
+                        </div>
+                        <div class="input-group">
+                            <i class='bx bxs-user'></i>
+                            <input type="text" id="Username" name="Username" placeholder="Username" required>
+                        </div>
+                        <div class="input-group">
+                            <i class='bx bx-mail-send'></i>
+                            <input type="Password" id="Password" name="Password" placeholder="Password" required>
+                        </div>
+                        <div class="input-group">
+                            <i class='bx bxs-lock-alt'></i>
+                            <input type="Password" id="Confirm_Password" name="Confirm_Password" placeholder="Confirm Password" required>
+                            <div class="error" id="password_error"></div>
+                        </div>
+                       <button type="submit">Sign Up</button>
+                    </form>
+                    <p>
+                        <span>Already have an account?</span>
+                        <b onclick="toggle()" class="pointer">Sign in here</b>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- END SIGN UP -->
+        <!-- SIGN IN -->
+        <div class="col align-items-center flex-col sign-in">
+            <div class="form-wrapper align-items-center">
+                <div class="form sign-in">
+                    <!-- Sign In Form -->
+                    <form action="log_in(connect).php" method="POST">
+                        <div class="input-group">
+                            <i class='bx bxs-user'></i>
+                            <input type="text" id="Username" name="Username" placeholder="Username" required>
+                        </div>
+                        <div class="input-group">
+                            <i class='bx bxs-lock-alt'></i>
+                            <input type="password" id="Password" name="Password" placeholder="Password" required>
+                        </div>
+                        <button type="submit">Login</button>
+                        <a href="#" onclick="handleForgotPassword()">Forgot Password?</a>
+                    </form>
+                    <p>
+                        <span>Don't have an account?</span>
+                        <b onclick="toggle()" class="pointer">Sign up here</b>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- END SIGN IN -->
+    </div>
+
+    <div id="overlay"></div>
+    <div id="forgotPasswordPopup">
+        <h3>Forgot Password</h3>
+        <form id="forgotPasswordForm" action="forgot_password.php" method="POST">
+            <input type="hidden" id="hiddenUsername" name="hiddenUsername">
+            <label for="Email">Enter your Email ID:</label>
+            <input type="email" id="Email" name="Email" required>
+            <button type="submit">Submit</button>
+            <button type="button" onclick="closeForgotPasswordPopup()">Cancel</button>
+        </form>
+    </div>
+    <!-- CONTENT SECTION -->
+    <div class="row content-row">
+        <!-- SIGN IN CONTENT -->
+        <div class="col align-items-center flex-col">
+            <div class="text sign-in">
+                <h2>Welcome</h2>
+            </div>
+            <div class="img sign-in">
+                <!-- Add images here if needed -->
+            </div>
+        </div>
+        <!-- END SIGN IN CONTENT -->
+
+        <!-- SIGN UP CONTENT -->
+        <div class="col align-items-center flex-col">
+            <div class="img sign-up">
+                <!-- Add images here if needed -->
+            </div>
+            <div class="text sign-up">
+                <h2>Join with us</h2>
+            </div>
+        </div>
+        <!-- END SIGN UP CONTENT -->
+    </div>
+    <!-- END CONTENT SECTION -->
+</div>
+
+<script>
+    let container = document.getElementById('container');
+
+    toggle = () => {
+        container.classList.toggle('sign-in');
+        container.classList.toggle('sign-up');
+    }
+
+    setTimeout(() => {
+        container.classList.add('sign-in');
+    }, 200);
+
+    function handleForgotPassword() {
+            const username = document.getElementById('Username').value.trim();
+            if (username === "") {
+                alert("Firstly enter Username");
+                return;
+            }
+            document.getElementById('hiddenUsername').value = username;
+            openForgotPasswordPopup();
+        }
+
+        function openForgotPasswordPopup() {
+            document.getElementById('forgotPasswordPopup').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        function closeForgotPasswordPopup() {
+            document.getElementById('forgotPasswordPopup').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+</script>
+
+</body>
+</html>

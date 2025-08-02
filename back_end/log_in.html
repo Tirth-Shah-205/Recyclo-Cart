@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+        }
+        form {
+            max-width: 400px;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        label, input, button, a {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            text-align: center;
+        }
+        button {
+            cursor: pointer;
+        }
+        #forgotPasswordPopup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+    <h2>Login</h2>
+    <form action="log_in(connect).php" method="POST">
+        <label for="Username">Username:</label>
+        <input type="text" id="Username" name="Username" required>
+        
+        <label for="Password">Password:</label>
+        <input type="password" id="Password" name="Password" required>
+        
+        <button type="submit">Login</button>
+        <a href="#" onclick="handleForgotPassword()">Forgot Password?</a>
+    </form>
+
+    <div id="overlay"></div>
+    <div id="forgotPasswordPopup">
+        <h3>Forgot Password</h3>
+        <form id="forgotPasswordForm" action="forgot_password.php" method="POST">
+            <input type="hidden" id="hiddenUsername" name="hiddenUsername">
+            <label for="Email">Enter your Email ID:</label>
+            <input type="email" id="Email" name="Email" required>
+            <button type="submit">Submit</button>
+            <button type="button" onclick="closeForgotPasswordPopup()">Cancel</button>
+        </form>
+    </div>
+
+    <script>
+        function handleForgotPassword() {
+            const username = document.getElementById('Username').value.trim();
+            if (username === "") {
+                alert("Firstly enter Username");
+                return;
+            }
+            document.getElementById('hiddenUsername').value = username;
+            openForgotPasswordPopup();
+        }
+
+        function openForgotPasswordPopup() {
+            document.getElementById('forgotPasswordPopup').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        function closeForgotPasswordPopup() {
+            document.getElementById('forgotPasswordPopup').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

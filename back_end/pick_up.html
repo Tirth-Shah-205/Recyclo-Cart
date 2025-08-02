@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pickup Items</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        .item {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 10px;
+            width: 200px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .item img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .item button {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .item button:hover {
+            background-color: #0056b3;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            z-index: 1000;
+            width: 300px;
+        }
+        .popup input, .popup button {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .popup button {
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+        }
+        .popup button:hover {
+            background-color: #218838;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+    <h1>Pick-Up Items</h1>
+    <div class="container">
+        <!-- Plastic -->
+        <div class="item">
+            <img src="plastic.jpg" alt="Plastic">
+            <h3>Plastic</h3>
+            <button onclick="openPopup('Plastic')">Select</button>
+        </div>
+
+        <!-- Paper -->
+        <div class="item">
+            <img src="paper.jpg" alt="Paper">
+            <h3>Paper</h3>
+            <button onclick="openPopup('Paper')">Select</button>
+        </div>
+
+        <!-- E-Waste -->
+        <div class="item">
+            <img src="e_waste.jpg" alt="E-Waste">
+            <h3>E-Waste</h3>
+            <button onclick="openPopup('E-Waste')">Select</button>
+        </div>
+
+        <!-- Metal -->
+        <div class="item">
+            <img src="metal.jpg" alt="Metal">
+            <h3>Metal</h3>
+            <button onclick="openPopup('Metal')">Select</button>
+        </div>
+    </div>
+
+    <!-- Popup -->
+    <div class="overlay" id="overlay"></div>
+    <div class="popup" id="popup">
+        <h2 id="popupTitle">Select Item</h2>
+        <form action="pick_up(connect).php" method="POST">
+            <input type="text" name="Username" id="Username" placeholder="Username" required>
+            <input type="tel" name="Phone" id="Phone" placeholder="Phone Number" required>
+            <input type="date" name="Date" id="Date" required>
+            <input type="time" name="Time" id="Time" required>
+            <input type="text" name="Address" id="Address" placeholder="Address" required>
+            <input type="number" name="Weight" id="Weight" placeholder="Weight in kilograms" required>
+            <input type="hidden" name="Confirm_Item" id="Confirm_Item"> <!-- Store selected item -->
+            <button type="submit">Submit</button>
+        </form>        
+    </div>
+
+    <script>
+        const popup = document.getElementById('popup');
+        const overlay = document.getElementById('overlay');
+        const popupTitle = document.getElementById('popupTitle');
+
+        function openPopup(item) {
+            popupTitle.textContent = `Enter details for ${item}`;
+            popup.style.display = 'block';
+            overlay.style.display = 'block';
+        }
+
+        function closePopup() {
+            popup.style.display = 'none';
+            overlay.style.display = 'none';
+        }
+
+        overlay.addEventListener('click', closePopup);
+
+        function submitForm() {
+            const username = document.getElementById('username').value;
+            const phone = document.getElementById('phone').value;
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+            const address = document.getElementById('address').value;
+            const weight = document.getElementById('weight').value;
+
+            if (username && phone && date && time && address && weight) {
+                alert(`Details submitted:\nUsername: ${username}\nPhone: ${phone}\nDate: ${date}\nTime: ${time}\nAddress: ${address}\nWeight: ${weight} kg`);
+                closePopup();
+            } else {
+                alert('Please fill out all fields.');
+            }
+        }
+    </script>
+</body>
+</html>

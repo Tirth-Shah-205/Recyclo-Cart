@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dummy Payment Gateway</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0fdf4;
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    h2 {
+      color: #14532d;
+      margin-bottom: 30px;
+    }
+
+    .payment-option, .payment-form {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 128, 0, 0.08);
+      padding: 25px;
+      margin: 15px;
+      width: 340px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      border: 1px solid #d1fae5;
+    }
+
+    .payment-option {
+      text-align: center;
+      cursor: pointer;
+      border-left: 6px solid transparent;
+    }
+
+    .payment-option:hover {
+      background-color: #ecfdf5;
+      transform: scale(1.02);
+      border-left: 6px solid #22c55e;
+      box-shadow: 0 6px 18px rgba(34, 197, 94, 0.2);
+    }
+
+    .payment-form {
+      display: none;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-top: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+      transition: border-color 0.2s ease;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #22c55e;
+      box-shadow: 0 0 0 2px #bbf7d0;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      background-color: #22c55e;
+      color: white;
+      border: none;
+      font-size: 16px;
+      border-radius: 8px;
+      margin-top: 20px;
+      cursor: pointer;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #16a34a;
+      transform: scale(1.02);
+    }
+
+    p {
+      color: #4b5563;
+      font-size: 14px;
+    }
+
+    h3 {
+      color: #166534;
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Choose Your Payment Method</h2>
+
+  <!-- Payment Options -->
+  <div class="payment-option" onclick="showUPIForm()">
+    <h3>Pay via UPI</h3>
+    <p>e.g. PhonePe, Google Pay, Paytm</p>
+  </div>
+
+  <div class="payment-option" onclick="showCardForm()">
+    <h3>Pay with Debit/Credit Card</h3>
+    <p>Visa, MasterCard, Rupay</p>
+  </div>
+
+  <div class="payment-option" onclick="payCOD()">
+    <h3>Cash on Delivery (COD)</h3>
+    <p>Pay when item is delivered</p>
+  </div>
+
+  <!-- UPI Form -->
+  <div class="payment-form" id="upiForm">
+    <h3>Enter UPI ID</h3>
+    <input type="text" id="upiId" placeholder="example@upi">
+    <button onclick="submitUPI()">Pay Now</button>
+  </div>
+
+  <!-- Card Form -->
+  <div class="payment-form" id="cardForm">
+    <h3>Enter Card Details</h3>
+    <input type="text" id="cardNumber" placeholder="Card Number">
+    <input type="text" id="expiry" placeholder="MM/YY">
+    <input type="text" id="cvv" placeholder="CVV">
+    <button onclick="submitCard()">Pay Now</button>
+  </div>
+
+  <script>
+    let selectedPaymentMethod = "";
+
+    function showUPIForm() {
+      selectedPaymentMethod = "UPI";
+      document.getElementById("upiForm").style.display = "block";
+      document.getElementById("cardForm").style.display = "none";
+    }
+
+    function showCardForm() {
+      selectedPaymentMethod = "Card";
+      document.getElementById("cardForm").style.display = "block";
+      document.getElementById("upiForm").style.display = "none";
+    }
+
+    function payCOD() {
+      const confirmCOD = confirm("Are you sure you want to continue with Cash on Delivery?");
+      if (confirmCOD) {
+        selectedPaymentMethod = "COD";
+        alert("Order placed with Cash on Delivery.");
+        submitOrder();
+        window.location.href = "success.html";
+      } else {
+        alert("COD payment cancelled.");
+      }
+    }
+
+    function submitUPI() {
+      const upiId = document.getElementById("upiId").value;
+      if (!upiId) {
+        alert("Please enter a UPI ID.");
+        return;
+      }
+      alert("Payment successful via UPI...");
+      submitOrder();
+      window.location.href = "success.html";
+    }
+
+    function submitCard() {
+      const card = document.getElementById("cardNumber").value;
+      const expiry = document.getElementById("expiry").value;
+      const cvv = document.getElementById("cvv").value;
+      if (!card || !expiry || !cvv) {
+        alert("Please enter all card details.");
+        return;
+      }
+      alert("Payment successful via Card...");
+      submitOrder();
+      window.location.href = "success.html";
+    }
+
+    function submitOrder() {
+      const items = [
+        { name: "Steel Bottle", quantity: 1 },
+        { name: "Brass Buddha", quantity: 2 }
+      ];
+      const amount = 499.00;
+
+      fetch("createorder.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          items: items,
+          amount: amount,
+          paymentMethod: selectedPaymentMethod
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          console.log("Order ID:", data.orderId);
+          console.log("Points earned:", data.points);
+        } else {
+          alert("Order failed: " + data.error);
+        }
+      })
+      .catch(err => {
+        alert("Request failed: " + err.message);
+      });
+    }
+  </script>
+
+</body>
+</html>
